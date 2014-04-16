@@ -20,5 +20,9 @@ before_install:
   - export PATH=/home/travis/anaconda/bin:$PATH
   # Learned the hard way: miniconda is not always up-to-date with conda.
   - conda update --yes conda
+  - sudo apt-get install npm
+  - npm install d3 vows smash jsdom 
 
-script: nosetests mpld3
+script:
+ - nosetests mpld3
+ - make test  # javascript tests
