@@ -29,3 +29,4 @@ script:
   - nosetests mpld3
   # Run JS tests on 2.7 only because gyp does not support 3.x.
   - make test
+
