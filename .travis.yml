@@ -20,5 +20,10 @@ before_install:
   - export PATH=/home/travis/anaconda/bin:$PATH
   # Learned the hard way: miniconda is not always up-to-date with conda.
   - conda update --yes conda
+  - if [ ${TRAVIS_PYTHON_VERSION:0:1} == "2" ]; then sudo apt-get install npm; fi
+  - if [ ${TRAVIS_PYTHON_VERSION:0:1} == "2" ]; then npm install d3 vows smash jsdom; fi
 
-script: nosetests mpld3
+script:
+  - nosetests mpld3
+  # Run JS tests on 2.7 only because gyp does not support 3.x.
+  - if [ ${TRAVIS_PYTHON_VERSION:0:1} == "2" ]; then make test; fi
